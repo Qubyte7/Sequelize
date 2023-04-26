@@ -1,0 +1,3 @@
+----------------------------------.authenticate------------------------------------
+When a Sequelize instance is created, it does not automatically connect to the database. The authenticate() method is used to test the database connection by sending a test query to the database. If the test query is successful, authenticate() will resolve with no arguments.
+ If the test query fails, authenticate() will reject with an error.
