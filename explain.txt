@@ -6,12 +6,18 @@ When a Sequelize instance is created, it does not automatically connect to the d
 for creating a table 
 ==>1st Arg:table Name
 ==>2nd Arg:model
-!::Note that when creating table the name should be in singular because when it is inputted in database will be converted in plural
+==>3rd Arg:More visualization of table
+!::Note that when creating table the name  when it is inputted in database will be converted in plural
 -----------------------------Model synchronization----------------------------
 
 ==>It inserts the table that you defined with sequelize into your database
    SYNTAX: --> modelName.sync()
-
+                              .sync() : -->Creates the table if it doesn't exist.
+                                        -->does nothing if already exists
+                               .sync({force:true}):-> Creates the table 
+                                                   ->Drops it first if it already exists
+                               .sync({alter:true}):-->Checks the current state of database(columns it has , thier dat types,etc.)
+                                                   -->Performs necesary changes in the table to make it match the model                                 
 
 
 
