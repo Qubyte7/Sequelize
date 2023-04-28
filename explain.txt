@@ -12,16 +12,11 @@ for creating a table
 
 ==>It inserts the table that you defined with sequelize into your database
    SYNTAX: --> modelName.sync()
-                              .sync() : -->Creates the table if it doesn't exist.
-                                        -->does nothing if already exists
-                               .sync({force:true}):-> Creates the table 
-                                                   ->Drops it first if it already exists
-                               .sync({alter:true}):-->Checks the current state of database(columns it has , thier dat types,etc.)
-                                                   -->Performs necesary changes in the table to make it match the model                                 
+                              
+(2) ==> .save:works for the field that were changed if nothing had been changed it would not return anything
 
-
-
-
+(3)-------------------------------------BULK Create---------------------------
+be carefull when using bulkCreate because when inserting into the database it IGNORE the validation stat
 
 
 
