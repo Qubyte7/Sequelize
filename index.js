@@ -52,18 +52,27 @@ User.sync({alter:true}).then(()=>{
 // ],{validate:true})//for accepting validation
 
 
-return User.findAll({attributes:['username','password']});//Here i want these specified field to display
-return User.findAll({attributes:[['username','name'],['password','pwd']]});//Here display username as name and passwrd as pwd
-return User.findAll({attributes:[[sequelize.fn('SUM',sequelize.col('age')),'howOld']]});//here we are finding the sum of the age col values
-return User.findAll({attributes:{exclude : ['password']}});//excluding a field
-return User.findAll({attributes:['username'],where:{age:45}});
-return User.findAll({attributes:{where:{age:45,username:'ganza'}}});
-return User.findAll({limit:2});//return 2 rows
-return User.findAll({order:[['age','DESC']]});//ordering age in descending order
-return User.findAll({attributes:['username',[sequelize.fn('SUM',sequelize.col('age')),'sum_age']],group : 'username'});//rertun the name in dataBase with summing up tha ages of people with the same name
-return User.findAll({where:{[Op.or]:{username:'ganza',age:45}}});//find where the username = ganza OR where age = 45
-return User.findAll({where:{age:{[Op.gt]:25}}});//where age is greater than 25
-
+// return User.findAll({attributes:['username','password']});//Here i want these specified field to display
+// return User.findAll({attributes:[['username','name'],['password','pwd']]});//Here display username as name and passwrd as pwd
+// return User.findAll({attributes:[[sequelize.fn('SUM',sequelize.col('age')),'howOld']]});//here we are finding the sum of the age col values
+// return User.findAll({attributes:{exclude : ['password']}});//excluding a field
+// return User.findAll({attributes:['username'],where:{age:45}});
+// return User.findAll({attributes:{where:{age:45,username:'ganza'}}});
+// return User.findAll({limit:2});//return 2 rows
+// return User.findAll({order:[['age','DESC']]});//ordering age in descending order
+// return User.findAll({attributes:['username',[sequelize.fn('SUM',sequelize.col('age')),'sum_age']],group : 'username'});//rertun the name in dataBase with summing up tha ages of people with the same name
+// return User.findAll({where:{[Op.or]:{username:'ganza',age:45}}});//find where the username = ganza OR where age = 45
+// return User.findAll({where:{age:{[Op.gt]:25}}});//where age is greater than 25
+// return User.findAll({where:sequelize.where(sequelize.fn('char_length',sequelize.col(username)),6)});//Username  equal to length6
+                   //UPDATING 
+return User.update({username:'pizza'},{where:{age:43}});//update name to pizza where age = 43
+return User.update({username:"Yves"},{where:{age:{[Op.gt]:1}}})
+                  //deleting
+return User.destroy({where:{username:'pizza'}})
+return User.destroy({truncate:true})//delete every thing from the table
+                  //Utility functions
+return User.max('age');
+return User.sum('age',{where:{age:23}});
 
 
 }).then((data)=>{
@@ -79,10 +88,11 @@ return User.findAll({where:{age:{[Op.gt]:25}}});//where age is greater than 25
 // data.forEach((element) => {
 //     console.log(element.toJSON());
 // });
-data.forEach((element)=>{
-  console.log(element.toJSON())
-})
-
+        //Outputtiing all users
+// data.forEach((element)=>{
+//   console.log(element.toJSON())
+// })
+console.log(data)
 
 })
 // .then((data)=>{
