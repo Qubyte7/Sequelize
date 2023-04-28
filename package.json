@@ -10,8 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.2.4",
-    "sequelize": "^6.31.0"
+    "sequelize": "^6.31.0",
+    "zlib": "^1.0.5"
   }
 }

@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const {DataTypes,Op} = Sequelize
+const {DataTypes,Op,Model} = Sequelize
 const sequelize = new Sequelize('SEQUELIZE','root','',{
     dialect : 'mysql',//here we are spcfind the db
     define:{
@@ -36,6 +36,23 @@ const User = sequelize.define('user',{
   freezeTableName:true,//help to retain the name of table in database to be same as one of the model
   timestamps:false,//remove the createdAt && UpdateAt time stamps that are automatically created sequelize when we create a table
 });
+           //Extending a model
+class User1 extends Model{}
+User.init({
+  firstname:{
+    type:DataTypes.STRING,
+    allowNull:false
+  },
+  lastname:{
+    type:DataTypes.STRING,
+    
+  }
+})
+
+
+
+
+
 
 
 //synchronising table

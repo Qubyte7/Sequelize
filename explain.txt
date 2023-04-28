@@ -16,7 +16,9 @@ for creating a table
 (2) ==> .save:works for the field that were changed if nothing had been changed it would not return anything
 
 (3)-------------------------------------BULK Create---------------------------
-be carefull when using bulkCreate because when inserting into the database it IGNORE the validation stat
-
+be carefull when using bulkCreate because when inserting into the database it IGNORE the validation sta
+(4)----------------GETTERS AND SETTERS--------------------------------------------------
+ we use both when we want to compress data that may be so long in our Database (using SETTER)
+  and use getter to uncompress the data when we are retrieving form the data base
 
 
