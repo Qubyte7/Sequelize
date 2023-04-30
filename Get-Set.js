@@ -49,16 +49,24 @@ type:DataTypes.INTEGER,
         const value = this.getDataValue('description');
         const uncompressed = zlib.inflateSync(Buffer.from(value,'base64'));
         return uncompressed;
-    }
+    } 
+    },
+    aboutPerson:{
+       type:DataTypes.VIRTUAL,
+       get(){
+        return `${this.PersonName} ${this.description}`;
+       } 
     }
 })
 
 Person1.sync({alter:true})
 .then(()=>{
+    return Person1.findOne({where:{PersonName:"Innocent"}})
     return Person1.create({PersonName:"Innocent",age:16,password:"MUGISHA@123",description:"Hey Did you  know that you can compress and uncompress data"})
 })
 .then((data)=>{
-    console.log(data.toJSON());
+    console.log(data.aboutPerson)
+    // console.log(data.toJSON());
 })
 .catch((error)=>{
     console.log("HERE IS YOUR ERROR  "+error.message);
