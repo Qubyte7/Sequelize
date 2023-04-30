@@ -38,38 +38,38 @@ const Student  = sequelize.define('student',{
         type:DataTypes.STRING,
         defaultValue:"Computer Science"
     },
-    set(value){//modifies how data is stored in database
-        const salt= bcrypt.genSaltSync(12)
-        const hash =  bcrypt.hashSync(value,salt);
-        this.setDataValue('favorite_class',hash)//normally it is used for passwords
-    },
+    //normally it is used for passwords
+   
     subcribed_to_wittcode:{
         type:DataTypes.BOOLEAN,
         defaultValue:true
     },
     description:{
         type:DataTypes.STRING,
-    set(value){
-        const compressed = zlib.deflateSync(value).toString('base64');
-        this.setDataValue('description',compressed)
-    },
-    get(){
-        const value = this.getDataValue('description');
-        const uncompressed = zlib.inflateSync(Buffer.from(value,'base64'));
-        return uncompressed;
-    }
+    // set(value){
+    //     const compressed = zlib.deflateSync(value).toString('base64');
+    //     this.setDataValue('description',compressed)
+    // },
+    // get(){
+    //     const value = this.getDataValue('description');
+    //     const uncompressed = zlib.inflateSync(Buffer.from(value,'base64'));
+    //     return uncompressed;
+    // }
     }
 },{timestamps:false})
 
 Student.sync({alter:true}).then(()=>{
-    return Student.bulkCreate([
-        {name:"Mugisha",favorite_class:"Class B",subcribed_to_wittcode:false,description:"Hey this is me"},
-        {name:"Ganza",subcribed_to_wittcode:true, description:"This is my little brother"},
-        {name:"sabrina", description:"This also my little sister"},
-        {name:"Michael",favorite_class:"Robotics",subcribed_to_wittcode:true, description:"hey this is my sibling"}
-    ])
-},{validate:true}
+//     return Student.bulkCreate([
+//         {name:"Mugisha",favorite_class:"Class B",subcribed_to_wittcode:false,description:"Hey this is me"},
+//         {name:"Ganza",subcribed_to_wittcode:true, description:"This is my little brother"},
+//         {name:"sabrina", description:"This also my little sister"},
+//         {name:"Michael",favorite_class:"Robotics",subcribed_to_wittcode:true, description:"hey this is my sibling"}
+//     ])
+// },{validate:true}
 // return Student.findAll({attributes:['name','favorite_class']})
+return Student.create({name:"Mugisha",favorite_class:"Class B",subcribed_to_wittcode:false,description:"Hey this is me"})
+
+}
 )
 
 .then((data)=>{
